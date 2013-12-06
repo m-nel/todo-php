@@ -1,1 +1,23 @@
 /* base.css overrides */
+
+#clear-completed {
+  cursor: pointer;
+}
+
+.flash.error {
+  padding: 16px;
+  padding-left: 60px;
+  background-color: #F1A7A6;
+}
+
+#todo-list li .toggle {
+  cursor: pointer;
+}
+
+#toggle-all {
+  cursor: pointer;
+}
+
+#todo-list li .destroy {
+  cursor: pointer;
+}

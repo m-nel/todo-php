@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Template • TodoPHP</title>
+    <title>Laravel • TodoPHP</title>
 
     {{ HTML::style('css/base.css') }}
     {{ HTML::style('css/app.css') }}
