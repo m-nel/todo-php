@@ -4,16 +4,6 @@ class BaseModel extends Eloquent {
 
   protected $errors;
 
-  public static function boot()
-  {
-    parent::boot();
-
-    static::saving(function($model)
-    {
-      return $model->validate();
-    });
-  }
-
   public function validate()
   {
     if ($this->fireModelEvent('validating') === false)
