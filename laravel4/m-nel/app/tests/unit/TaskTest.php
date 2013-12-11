@@ -50,7 +50,7 @@ class TaskTest extends TestCase {
 
   public function test_scope_todo()
   {
-    $this->assertEquals(1, Task::todo()->get()->count());
+    $this->assertTodoCount(1);
   }
 
   public function test_scope_completed()
@@ -101,5 +101,15 @@ class TaskTest extends TestCase {
 
     Task::toggleAll();
     $this->assertTodoCount(2);
+  }
+
+  public function test_task_validating_event_fires()
+  {
+    $mockedObeserver = Mockery::mock('TaskObserver');
+    $mockedObeserver->shouldReceive('validating')
+                    ->once();
+                    
+    App::instance('TaskObserver', $mockedObeserver);
+    (new Task)->validate();
   }
 }

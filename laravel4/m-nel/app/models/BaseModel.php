@@ -44,6 +44,22 @@ class BaseModel extends Eloquent {
     static::registerModelEvent('validated', $callback);
   }
 
+  /**
+   * Get the observable event names.
+   *
+   * @return array
+   */
+  public function getObservableEvents()
+  {
+    return array_merge(
+      parent::getObservableEvents(),
+      [
+        'validating',
+        'validated'
+      ]
+    );
+  }
+
   public function getErrors()
   {
     return $this->errors;
