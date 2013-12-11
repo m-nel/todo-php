@@ -2,8 +2,18 @@
 
 class BaseModel extends Eloquent {
 
+  /**
+   * The models validation errors
+   * 
+   * @var array
+   */
   protected $errors;
 
+  /**
+   * Validate the model.
+   * 
+   * @return bool
+   */
   public function validate()
   {
     if ($this->fireModelEvent('validating') === false)
@@ -24,11 +34,33 @@ class BaseModel extends Eloquent {
     return true;
   }
 
+  /**
+   * Get all the current validation errors of the model.
+   * 
+   * @return array
+   */
+  public function getErrors()
+  {
+    return $this->errors;
+  }
+
+  /**
+   * Register a validating model event with the dispatcher.
+   * 
+   * @param Closure|string $callback
+   * @return void
+   */
   public static function validating($callback)
   {
     static::registerModelEvent('validating', $callback);
   }
 
+  /**
+   * Register a validated model event with the dispatcher.
+   * 
+   * @param Closure|string $callback
+   * @return void
+   */
   public static function validated($callback)
   {
     static::registerModelEvent('validated', $callback);
@@ -48,10 +80,5 @@ class BaseModel extends Eloquent {
         'validated'
       ]
     );
-  }
-
-  public function getErrors()
-  {
-    return $this->errors;
   }
 }
